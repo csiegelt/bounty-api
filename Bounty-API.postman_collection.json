@@ -1,0 +1,210 @@
+{
+  "info": {
+    "name": "Bounty API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000"
+    },
+    {
+      "key": "pirateId",
+      "value": ""
+    },
+    {
+      "key": "bountyId",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Pirates",
+      "item": [
+        {
+          "name": "Crear Pirata",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData._id) {",
+                  "    pm.collectionVariables.set('pirateId', jsonData._id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Monkey D. Luffy\",\n  \"tripulacion\": \"Sombrero de Paja\",\n  \"tieneFrutaDelDiablo\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/pirates",
+              "host": ["{{baseUrl}}"],
+              "path": ["pirates"]
+            }
+          }
+        },
+        {
+          "name": "Crear Pirata 2",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Roronoa Zoro\",\n  \"tripulacion\": \"Sombrero de Paja\",\n  \"tieneFrutaDelDiablo\": false\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/pirates",
+              "host": ["{{baseUrl}}"],
+              "path": ["pirates"]
+            }
+          }
+        },
+        {
+          "name": "Listar todos los Piratas",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/pirates",
+              "host": ["{{baseUrl}}"],
+              "path": ["pirates"]
+            }
+          }
+        },
+        {
+          "name": "Obtener Pirata por ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/pirates/{{pirateId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["pirates", "{{pirateId}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Bounties",
+      "item": [
+        {
+          "name": "Crear Bounty",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData._id) {",
+                  "    pm.collectionVariables.set('bountyId', jsonData._id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cantidadBellys\": 3000000000,\n  \"estado\": \"Wanted\",\n  \"pirata\": \"{{pirateId}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/bounties",
+              "host": ["{{baseUrl}}"],
+              "path": ["bounties"]
+            }
+          }
+        },
+        {
+          "name": "Listar todas las Bounties",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/bounties",
+              "host": ["{{baseUrl}}"],
+              "path": ["bounties"]
+            }
+          }
+        },
+        {
+          "name": "Listar Bounties Activas",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/bounties/active",
+              "host": ["{{baseUrl}}"],
+              "path": ["bounties", "active"]
+            }
+          }
+        },
+        {
+          "name": "Obtener Bounty por ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/bounties/{{bountyId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["bounties", "{{bountyId}}"]
+            }
+          }
+        },
+        {
+          "name": "Actualizar Bounty (PATCH)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cantidadBellys\": 5000000000,\n  \"estado\": \"Captured\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/bounties/{{bountyId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["bounties", "{{bountyId}}"]
+            }
+          }
+        },
+        {
+          "name": "Eliminar Bounty",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/bounties/{{bountyId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["bounties", "{{bountyId}}"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

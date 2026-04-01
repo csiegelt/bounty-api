@@ -1,0 +1,12 @@
+# Dependencias
+node_modules/
+
+# Build
+dist/
+
+# Variables de entorno
+.env
+
+# Logs
+*.log
+npm-debug.log*

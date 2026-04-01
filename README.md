@@ -94,8 +94,7 @@ Los tests unitarios del `BountiesService` verifican:
 
 ### Captura de tests pasando en verde
 
-
-./screenshots/ssJestTest.png
+![Tests pasando](./screenshots/ssJestTest.png)
 
 ---
 
